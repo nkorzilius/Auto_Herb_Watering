@@ -29,6 +29,7 @@ bool SoilSensor::plantsNeedWater()
     // 2) Check if value was below this threshold for nx 
     if (m_counter >= m_cycleThreshold)
     {
+      m_counter = 0;
       return true;
     }
   }
