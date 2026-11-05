@@ -4,9 +4,6 @@
 #include "Arduino.h"
 #include "Adafruit_seesaw.h"
 
-// TODO: Test & calibrate this value!
-const uint16_t THRESHOLD = 600;
-
 enum CalibrationState {
   INIT,
   DRY,
@@ -27,6 +24,7 @@ class SoilSensor
 
     void calibrateDry();
     void calibrateMoist();
+    void calculateThreshold();
 
   private:
     int m_adress;
@@ -34,12 +32,13 @@ class SoilSensor
 
     uint16_t m_counter;
     uint16_t m_cycleThreshold;
+    uint16_t m_capacitive_threshold;
 
     CalibrationState m_calibration_state;
     uint16_t m_average_dry_value;
     uint16_t m_average_moist_value;
 
-    // int measureAverage();
+    uint16_t measureAverage();
 };
 
 #endif // SOILSENSOR_H

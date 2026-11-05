@@ -68,7 +68,6 @@ void loop()
 void calibrateSoilSensor()
 {
   unsigned long currentMillis = millis(); // Time since program started
-  // Process:
   if (soilSensor.calibrationStateIsDry())
   {
     // Red LED is BLINKING To indicate waiting on start calibration!
@@ -81,7 +80,6 @@ void calibrateSoilSensor()
     if (pushButton.buttonPressed())
     {
       redLed.turnOnLed(true);
-      // Start measuring (blocking thread?!)
       soilSensor.calibrateDry();
       redLed.turnOnLed(false);
     }
@@ -99,10 +97,13 @@ void calibrateSoilSensor()
     if (pushButton.buttonPressed())
     {
       yellowLed.turnOnLed(true);
-      // Start measuring (blocking thread?!)
       soilSensor.calibrateMoist();
+      soilSensor.calculateThreshold();
       yellowLed.turnOnLed(false);
-      greenLed.turnOnLed(true);
+      if (soilSensor.calibrationStateIsDone())
+      {
+        greenLed.turnOnLed(true);
+      }
     }
   }
 }
