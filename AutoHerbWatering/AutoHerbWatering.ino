@@ -4,9 +4,6 @@
 #include "src/UserInteraction/Button.h"
 #include "src/UserInteraction/Led.h"
 
-unsigned long previousMeasurement = 0; // Store time for first event
-const long sensor_read_interval = 1000; // Interval for reading soil moisture level [milliseconds] (5min = 300000)
-
 enum Pins{
   BUTTON = 2,
   PUMP = 5,
@@ -47,22 +44,14 @@ void loop()
     calibrateSoilSensor();
   }
 
-  // TODO: Update Loop logic!
-
-  // if (pushButton.buttonPressed())
-  // {
-  //   activatePump();
-  // }
-  // // Check if interval milliseconds have passed before executing loop:
-  // else if (currentMillis - previousMeasurement >= sensor_read_interval) 
-  // {
-  //   previousMeasurement = millis();
-
-  //   if (soilSensor.plantsNeedWater())
-  //   {
-  //     activatePump();
-  //   }
-  // }
+  if (pushButton.buttonPressed())
+  {
+    activatePump();
+  }
+  else if (soilSensor.plantsNeedWater())
+  {
+    activatePump();
+  }
 }
 
 void calibrateSoilSensor()

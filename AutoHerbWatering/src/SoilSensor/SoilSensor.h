@@ -38,7 +38,12 @@ class SoilSensor
     uint16_t m_average_dry_value;
     uint16_t m_average_moist_value;
 
-    uint16_t measureAverage();
+    unsigned long m_prevMeasurement;
+    uint16_t m_cap_total;
+    uint16_t m_averaging_counter;
+
+    uint16_t measureAverage(uint16_t amount_of_measurements);
+    bool averageExceedsThreshold(uint16_t average);
 };
 
 #endif // SOILSENSOR_H
