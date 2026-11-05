@@ -6,8 +6,7 @@ Button::Button(int buttonPin): m_pin(buttonPin), m_buttonState(0)
 void Button::buttonInit()
 {
     pinMode(m_pin, INPUT);
-    Serial.print("Button initialized on pin: ");
-    Serial.print(m_pin);
+    Serial.print("Button initialized on pin: "); Serial.println(m_pin);
 }
 
 bool Button::buttonPressed()
