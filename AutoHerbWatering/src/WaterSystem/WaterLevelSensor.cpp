@@ -6,7 +6,7 @@ WaterLevelSensor::WaterLevelSensor(int pin)
 void WaterLevelSensor::sensorInit()
 {
   // TODO Implement initialization!
-  Serial.print("Water Level Sensor Initialized!");
+  Serial.println("Water Level Sensor Initialized!");
 }
 
 bool WaterLevelSensor::waterLevelSufficient()
