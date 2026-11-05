@@ -67,15 +67,9 @@ void loop()
 
 void calibrateSoilSensor()
 {
-  unsigned long currentMillis = millis(); // Time since program started
   if (soilSensor.calibrationStateIsDry())
   {
-    // Red LED is BLINKING To indicate waiting on start calibration!
-    if (currentMillis - previousMeasurement >= 1000) // Interval is 1s 
-    {
-      previousMeasurement = millis();
-      redLed.blinkLed(true);
-    }
+    redLed.blinkLed();
     // TODO: If adding Display -> Instruct user to put the Probe in Dry Soil & press button to start measuring!
     if (pushButton.buttonPressed())
     {
@@ -86,13 +80,7 @@ void calibrateSoilSensor()
   }
   else if (soilSensor.calibrationStateIsMoist())
   {
-    // Yellow LED is BLINKING To indicate waiting on start calibration for Moist Ground!
-    if (currentMillis - previousMeasurement >= 1000) // Interval is 1s 
-    {
-      previousMeasurement = millis();
-      yellowLed.blinkLed(true);
-    }
-    
+    yellowLed.blinkLed();
     // TODO: If adding Display -> Instruct user to put the Probe in Moist Soil & press button to start measuring!
     if (pushButton.buttonPressed())
     {
